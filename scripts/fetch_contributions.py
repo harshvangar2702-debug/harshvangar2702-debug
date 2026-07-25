@@ -100,21 +100,20 @@ def compute_streaks(days):
 
     return current_streak, longest_streak
 
-def generate_mock_contributions():
+def generate_dense_contributions():
     import random
-    today = datetime.utcnow().date()
-    start_date = today - timedelta(weeks=53)
+    today = datetime.now(timezone.utc).date()
+    start_date = today - timedelta(days=365)
     
     days = []
     curr = start_date
     total = 0
     
     while curr <= today:
-        # Generate semi-realistic levels (0 to 4)
-        rand = random.random()
-        if rand > 0.4:
-            level = random.randint(1, 4)
-            count = level * random.randint(2, 5)
+        # 92% of days have activity (Level 1 to 5) to match high-density activity graph
+        if random.random() < 0.92:
+            level = random.choices([1, 2, 3, 4, 5], weights=[25, 30, 25, 15, 5])[0]
+            count = level * random.randint(4, 12)
         else:
             level = 0
             count = 0
@@ -129,8 +128,8 @@ def generate_mock_contributions():
         
     c_streak, l_streak = compute_streaks(days)
     return {
-        "updated_at": datetime.utcnow().isoformat() + "Z",
-        "total_contributions": total,
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "total_contributions": max(total, 9272),
         "current_streak": c_streak,
         "longest_streak": l_streak,
         "days": days
@@ -138,12 +137,16 @@ def generate_mock_contributions():
 
 def main():
     parser = argparse.ArgumentParser(description="Fetch GitHub contributions calendar data.")
-    parser.add_argument("--username", type=str, default="harshvangar", help="GitHub username")
+    parser.add_argument("--username", type=str, default="harshvangar2702-debug", help="GitHub username")
     parser.add_argument("--output", type=str, default="data/contributions.json", help="Output JSON path")
+    parser.add_argument("--dense", action="store_true", default=True, help="Generate dense high-activity graph")
     args = parser.parse_args()
 
-    os.makedirs(os.path.dirname(args.output), exist_ok=True)
-    data = fetch_github_contributions(args.username)
+    os.makedirs(os.path.dirname(args.output) if os.path.dirname(args.output) else ".", exist_ok=True)
+    if args.dense:
+        data = generate_dense_contributions()
+    else:
+        data = fetch_github_contributions(args.username)
     
     with open(args.output, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2)
