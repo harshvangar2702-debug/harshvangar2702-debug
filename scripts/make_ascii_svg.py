@@ -46,8 +46,13 @@ def generate_ascii_svg(image_path: str, output_path: str, char_width: int = 65):
     font_size = 7.5
     line_height = 8.5
     
-    svg_width = 375
+    # Match info-card.svg exactly!
+    svg_width = 460
     svg_height = 415
+
+    # Center the ASCII art horizontally inside the 460px box
+    # 65 chars * 4.5px per char = ~292px. 460 - 292 = 168. Offset by ~84px.
+    text_offset_x = 60
 
     # SMIL typing animation parameters
     row_duration = 0.04  # seconds per row
@@ -76,7 +81,7 @@ def generate_ascii_svg(image_path: str, output_path: str, char_width: int = 65):
     </clipPath>''')
 
         text_elements.append(f'''
-    <text x="18" y="{y_pos}" clip-path="url(#{clip_id})" class="ascii-text">{safe_text}</text>''')
+    <text x="{text_offset_x}" y="{y_pos}" clip-path="url(#{clip_id})" class="ascii-text">{safe_text}</text>''')
 
     svg_content = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {svg_width} {svg_height}" width="{svg_width}" height="{svg_height}">
   <style>

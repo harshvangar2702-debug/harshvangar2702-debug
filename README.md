@@ -13,10 +13,10 @@
 <table>
   <tr>
     <td valign="top">
-      <img src="./avi-ascii.svg?t=123456" width="375" alt="ASCII Portrait" />
+      <img src="./avi-ascii.svg?t=final2026" alt="ASCII Portrait" />
     </td>
     <td valign="top">
-      <img src="./info-card.svg?t=123456" width="455" alt="Neofetch Info Card" />
+      <img src="./info-card.svg?t=final2026" alt="Neofetch Info Card" />
     </td>
   </tr>
 </table>
