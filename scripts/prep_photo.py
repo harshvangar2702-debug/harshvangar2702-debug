@@ -5,10 +5,9 @@ import numpy as np
 
 def prep_image(input_path: str, output_path: str):
     try:
-        import cv2
         from PIL import Image
     except ImportError:
-        print("[!] OpenCV and Pillow are required for prep_photo.py. Installing/running fallback.")
+        print("[!] Pillow is required for prep_photo.py.")
         sys.exit(1)
 
     if not os.path.exists(input_path):
@@ -18,27 +17,29 @@ def prep_image(input_path: str, output_path: str):
     # 1. Load Image
     img = Image.open(input_path).convert("RGBA")
 
-    # 2. Background removal (rembg if installed)
+    # 2. Composite on white background and convert to grayscale
+    if img.mode == 'RGBA':
+        white_bg = Image.new("RGBA", img.size, (255, 255, 255, 255))
+        composite = Image.alpha_composite(white_bg, img).convert("L")
+    else:
+        composite = img.convert("L")
+
+    # 3. Apply contrast enhancement
     try:
-        import rembg
-        print("[*] Removing background with rembg...")
-        img_no_bg = rembg.remove(img)
-    except Exception as e:
-        print(f"[*] rembg not available or failed ({e}). Using luminance threshold background removal...")
-        img_no_bg = img
-
-    # Composite on white background
-    white_bg = Image.new("RGBA", img_no_bg.size, (255, 255, 255, 255))
-    composite = Image.alpha_composite(white_bg, img_no_bg).convert("L")
-
-    # 3. Apply CLAHE (Contrast Limited Adaptive Histogram Equalization) with OpenCV
-    img_np = np.array(composite)
-    clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))
-    enhanced_np = clahe.apply(img_np)
+        import cv2
+        img_np = np.array(composite)
+        clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))
+        enhanced_np = clahe.apply(img_np)
+        enhanced_img = Image.fromarray(enhanced_np)
+    except Exception:
+        from PIL import ImageEnhance
+        enhancer = ImageEnhance.Contrast(composite)
+        enhanced_img = enhancer.enhance(2.0)
 
     os.makedirs(os.path.dirname(output_path) if os.path.dirname(output_path) else ".", exist_ok=True)
-    cv2.imwrite(output_path, enhanced_np)
-    print(f"[✓] Saved prepped photo to {output_path}")
+    enhanced_img.save(output_path)
+    print(f"[+] Saved prepped photo to {output_path}")
+    return
 
 def create_sample_photo(path: str):
     """Creates a basic facial profile placeholder image if no input photo is supplied."""

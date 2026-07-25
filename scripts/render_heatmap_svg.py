@@ -4,12 +4,12 @@ import argparse
 from datetime import datetime
 
 PALETTE = [
-    "#161b22",  # Level 0 (None)
-    "#0e4429",  # Level 1
-    "#006d32",  # Level 2
-    "#26a641",  # Level 3
-    "#39d353",  # Level 4
-    "#69f0a0"   # Level 5 (High intensity top end)
+    "#ebedf0",  # Level 0 (None)
+    "#9be9a8",  # Level 1
+    "#40c463",  # Level 2
+    "#30a14e",  # Level 3
+    "#216e39",  # Level 4
+    "#154c25"   # Level 5
 ]
 
 MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -99,26 +99,23 @@ def render_svg(data_path: str, output_path: str):
 
     svg_content = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="{width}" height="{height}">
   <style>
-    .bg {{ fill: #0d1117; rx: 8px; }}
-    .title {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; fill: #58a6ff; font-weight: bold; }}
-    .label {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #8b949e; }}
-    .stats {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; fill: #c9d1d9; }}
-    .accent {{ fill: #39d353; font-weight: bold; }}
+    .bg {{ fill: #ffffff; stroke: #d0d7de; stroke-width: 1px; rx: 8px; }}
+    .title {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; fill: #0969da; font-weight: bold; }}
+    .label {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #57606a; }}
+    .stats {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; fill: #24292f; }}
+    .accent {{ fill: #1a7f37; font-weight: bold; }}
 
     .day-box {{
       opacity: 0;
-      transform-origin: center;
       animation: reveal 0.4s ease-out forwards;
     }}
 
     @keyframes reveal {{
       0% {{
         opacity: 0;
-        transform: scale(0.3);
       }}
       100% {{
         opacity: 1;
-        transform: scale(1);
       }}
     }}
   </style>

@@ -27,28 +27,33 @@ def generate_info_card(output_path: str):
 
     for idx, (label, val, col, is_bold) in enumerate(lines):
         delay = round(0.08 + (idx * 0.05), 2)
+        smil_anim = f'<animate attributeName="opacity" from="0" to="1" begin="{delay}s" dur="0.35s" fill="freeze" />'
         
         if label.startswith("sep"):
             lines_svg.append(f'''
-    <g class="card-line" style="animation-delay: {delay}s;">
+    <g opacity="0">
+      {smil_anim}
       <text x="22" y="{y_pos}" class="sep-text">{val}</text>
     </g>''')
             y_pos += 20
         elif label.startswith("hl"):
             lines_svg.append(f'''
-    <g class="card-line" style="animation-delay: {delay}s;">
+    <g opacity="0">
+      {smil_anim}
       <text x="22" y="{y_pos}" class="hl-text" fill="{col}">{val}</text>
     </g>''')
             y_pos += 22
         elif label == "user":
             lines_svg.append(f'''
-    <g class="card-line" style="animation-delay: {delay}s;">
+    <g opacity="0">
+      {smil_anim}
       <text x="22" y="{y_pos}" class="user-text">{val}</text>
     </g>''')
             y_pos += 24
         else:
             lines_svg.append(f'''
-    <g class="card-line" style="animation-delay: {delay}s;">
+    <g opacity="0">
+      {smil_anim}
       <text x="22" y="{y_pos}" class="key-text">{label}</text>
       <text x="110" y="{y_pos}" class="val-text" fill="{col}">{val}</text>
     </g>''')
@@ -68,23 +73,6 @@ def generate_info_card(output_path: str):
     .val-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; font-weight: 500; }}
     .sep-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; fill: #8b949e; font-weight: bold; }}
     .hl-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; font-weight: 500; }}
-
-    .card-line {{
-      opacity: 0;
-      transform: translateY(6px);
-      animation: fadeInSlide 0.35s ease-out forwards;
-    }}
-
-    @keyframes fadeInSlide {{
-      0% {{
-        opacity: 0;
-        transform: translateY(6px);
-      }}
-      100% {{
-        opacity: 1;
-        transform: translateY(0);
-      }}
-    }}
   </style>
 
   <!-- Container Box -->
