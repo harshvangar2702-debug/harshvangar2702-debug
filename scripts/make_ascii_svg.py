@@ -39,20 +39,20 @@ def generate_default_matrix(width: int, height: int):
         rows.append("".join(row))
     return rows
 
-def generate_ascii_svg(image_path: str, output_path: str, char_width: int = 65):
-    target_rows = 43
+def generate_ascii_svg(image_path: str, output_path: str, char_width: int = 90):
+    target_rows = 60
     ascii_rows = image_to_ascii(image_path, char_width, target_rows)
 
-    font_size = 7.5
-    line_height = 8.5
+    font_size = 7.0
+    line_height = 5.5
     
     # Match info-card.svg exactly!
     svg_width = 460
     svg_height = 415
 
     # Center the ASCII art horizontally inside the 460px box
-    # 65 chars * 4.5px per char = ~292px. 460 - 292 = 168. Offset by ~84px.
-    text_offset_x = 84
+    # 90 chars * 4.2px per char = ~378px. 460 - 378 = 82. Offset by ~41px.
+    text_offset_x = 41
 
     # SMIL typing animation parameters
     row_duration = 0.04  # seconds per row
@@ -62,7 +62,7 @@ def generate_ascii_svg(image_path: str, output_path: str, char_width: int = 65):
 
     for idx, row_text in enumerate(ascii_rows):
         clip_id = f"row-clip-{idx}"
-        y_pos = 38 + (idx * line_height)
+        y_pos = 35 + (idx * line_height)
         start_delay = round(0.08 + (idx * row_duration), 3)
 
         safe_text = (
@@ -75,13 +75,18 @@ def generate_ascii_svg(image_path: str, output_path: str, char_width: int = 65):
 
         clip_paths.append(f'''
     <clipPath id="{clip_id}">
-      <rect x="0" y="{y_pos - 7}" width="0" height="{line_height + 2}">
+      <rect x="0" y="{y_pos - 6}" width="0" height="{line_height + 2}">
         <animate attributeName="width" from="0" to="{svg_width}" begin="{start_delay}s" dur="0.2s" fill="freeze" />
       </rect>
     </clipPath>''')
 
         text_elements.append(f'''
     <text x="{text_offset_x}" y="{y_pos}" clip-path="url(#{clip_id})" class="ascii-text">{safe_text}</text>''')
+
+    # Add terminal prompt at bottom
+    prompt_y = 390
+    prompt_text = "harshvangar2702-debug@github:~$ whoami Harsh Vangar"
+    prompt_delay = round(0.08 + (target_rows * row_duration) + 0.5, 3)
 
     svg_content = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {svg_width} {svg_height}" width="{svg_width}" height="{svg_height}">
   <style>
@@ -94,9 +99,15 @@ def generate_ascii_svg(image_path: str, output_path: str, char_width: int = 65):
     .ascii-text {{
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
       font-size: {font_size}px;
-      fill: #8b949e;
+      fill: #f0f6fc;
       letter-spacing: 0px;
       white-space: pre;
+    }}
+    .prompt-text {{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 10px;
+      fill: #f0f6fc;
+      font-weight: bold;
     }}
   </style>
 
@@ -112,11 +123,23 @@ def generate_ascii_svg(image_path: str, output_path: str, char_width: int = 65):
 
   <defs>
     {''.join(clip_paths)}
+    <clipPath id="prompt-clip">
+      <rect x="0" y="{prompt_y - 10}" width="0" height="15">
+        <animate attributeName="width" from="0" to="{svg_width}" begin="{prompt_delay}s" dur="1s" fill="freeze" />
+      </rect>
+    </clipPath>
   </defs>
 
   <!-- ASCII Rows -->
   <g>
     {''.join(text_elements)}
+  </g>
+  
+  <!-- Terminal Prompt -->
+  <g>
+    <text x="25" y="{prompt_y}" clip-path="url(#prompt-clip)" class="prompt-text">{prompt_text} <tspan fill="#8b949e">█</tspan>
+      <animate attributeName="opacity" values="1;0;1" dur="1s" repeatCount="indefinite" />
+    </text>
   </g>
 </svg>
 '''
@@ -131,7 +154,7 @@ def main():
     parser = argparse.ArgumentParser(description="Convert photo to self-typing ASCII SVG.")
     parser.add_argument("--image", type=str, default="data/source-prepped.png", help="Prepped image path")
     parser.add_argument("--output", type=str, default="avi-ascii.svg", help="Output SVG path")
-    parser.add_argument("--width", type=int, default=65, help="Character width matrix")
+    parser.add_argument("--width", type=int, default=90, help="Character width matrix")
     args = parser.parse_args()
 
     generate_ascii_svg(args.image, args.output, args.width)
