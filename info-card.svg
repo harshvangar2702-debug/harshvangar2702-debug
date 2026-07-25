@@ -35,14 +35,14 @@
     </g>
     <g>
       <text x="22" y="119" class="key-text">Focus</text>
-      <text x="105" y="119" class="val-text" fill="#79c0ff">UI/UX Design & User-Centric Web Experiences</text>
+      <text x="105" y="119" class="val-text" fill="#79c0ff">UI/UX Design &amp; User-Centric Web Experiences</text>
     </g>
     <g>
       <text x="22" y="145" class="key-text">Edu</text>
       <text x="105" y="145" class="val-text" fill="#79c0ff">CS Diploma, MSBTE Maharashtra</text>
     </g>
     <g>
-      <text x="22" y="171" class="sep-text">-- Stack & Skills</text>
+      <text x="22" y="171" class="sep-text">-- Stack &amp; Skills</text>
     </g>
     <g>
       <text x="22" y="193" class="key-text">Frontend</text>
@@ -61,7 +61,7 @@
       <text x="105" y="271" class="val-text" fill="#ff7b72">Figma, Git, GitHub Actions, VS Code</text>
     </g>
     <g>
-      <text x="22" y="297" class="sep-text">-- Highlights & Achievements</text>
+      <text x="22" y="297" class="sep-text">-- Highlights &amp; Achievements</text>
     </g>
     <g>
       <text x="22" y="319" class="hl-text" fill="#56d364">• Winner/Participant: SIH 2023 Hackathon</text>

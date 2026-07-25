@@ -9,14 +9,14 @@ def generate_info_card(output_path: str):
     lines = [
         ("user", "Harsh Vangar (harshvangar2702-debug)", "#58a6ff", True),
         ("Now", "Full-Stack Developer @ Tech Surya IT Solutions", "#79c0ff", False),
-        ("Focus", "UI/UX Design & User-Centric Web Experiences", "#79c0ff", False),
+        ("Focus", "UI/UX Design &amp; User-Centric Web Experiences", "#79c0ff", False),
         ("Edu", "CS Diploma, MSBTE Maharashtra", "#79c0ff", False),
-        ("sep1", "-- Stack & Skills", "#8b949e", False),
+        ("sep1", "-- Stack &amp; Skills", "#8b949e", False),
         ("Frontend", "React.js, JavaScript, HTML5/CSS3, UI/UX", "#ffa657", False),
         ("Backend", "Python, Node.js, RESTful APIs, SQL", "#a5d6ff", False),
         ("Projects", "AirCanvas (Gesture AI), SIH Hackathon App", "#d2a8ff", False),
         ("Tools", "Figma, Git, GitHub Actions, VS Code", "#ff7b72", False),
-        ("sep2", "-- Highlights & Achievements", "#8b949e", False),
+        ("sep2", "-- Highlights &amp; Achievements", "#8b949e", False),
         ("hl1", "• Winner/Participant: SIH 2023 Hackathon", "#56d364", False),
         ("hl2", "• Built AirCanvas (AI Gesture Drawing)", "#56d364", False),
     ]
@@ -26,29 +26,32 @@ def generate_info_card(output_path: str):
     line_spacing = 26
 
     for idx, (label, val, col, is_bold) in enumerate(lines):
+        val_clean = val.replace("&", "&amp;") if "&amp;" not in val else val
+        label_clean = label.replace("&", "&amp;") if "&amp;" not in label else label
+        
         if label.startswith("sep"):
             lines_svg.append(f'''
     <g>
-      <text x="22" y="{y_pos}" class="sep-text">{val}</text>
+      <text x="22" y="{y_pos}" class="sep-text">{val_clean}</text>
     </g>''')
             y_pos += 22
         elif label.startswith("hl"):
             lines_svg.append(f'''
     <g>
-      <text x="22" y="{y_pos}" class="hl-text" fill="{col}">{val}</text>
+      <text x="22" y="{y_pos}" class="hl-text" fill="{col}">{val_clean}</text>
     </g>''')
             y_pos += 24
         elif label == "user":
             lines_svg.append(f'''
     <g>
-      <text x="22" y="{y_pos}" class="user-text">{val}</text>
+      <text x="22" y="{y_pos}" class="user-text">{val_clean}</text>
     </g>''')
             y_pos += 28
         else:
             lines_svg.append(f'''
     <g>
-      <text x="22" y="{y_pos}" class="key-text">{label}</text>
-      <text x="105" y="{y_pos}" class="val-text" fill="{col}">{val}</text>
+      <text x="22" y="{y_pos}" class="key-text">{label_clean}</text>
+      <text x="105" y="{y_pos}" class="val-text" fill="{col}">{val_clean}</text>
     </g>''')
             y_pos += line_spacing
 
