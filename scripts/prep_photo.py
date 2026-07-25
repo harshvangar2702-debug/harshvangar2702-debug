@@ -17,12 +17,12 @@ def prep_image(input_path: str, output_path: str):
     # 1. Load Image
     img = Image.open(input_path).convert("RGBA")
 
-    # 2. Crop aggressively to central subject region (tight face/upper body)
+    # 2. Crop to focus on face and upper torso of Harsh
     w, h = img.size
-    left = int(w * 0.28)
-    top = int(h * 0.15)
-    right = int(w * 0.72)
-    bottom = int(h * 0.75)
+    left = int(w * 0.15)
+    top = int(h * 0.05)
+    right = int(w * 0.85)
+    bottom = int(h * 0.85)
     img_cropped = img.crop((left, top, right, bottom))
 
     # 3. Composite on clean background and convert to grayscale
