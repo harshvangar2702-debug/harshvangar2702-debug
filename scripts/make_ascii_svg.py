@@ -6,25 +6,21 @@ from PIL import Image
 # Leading space ensures background remains transparent/blank
 RAMP = " .`:-=+*cs#%@"
 
-def image_to_ascii(image_path: str, width: int = 75):
+def image_to_ascii(image_path: str, width: int = 65, target_rows: int = 43):
     if not os.path.exists(image_path):
         print(f"[*] Prepped image '{image_path}' missing. Generating default ASCII matrix...")
-        return generate_default_matrix(width, 48)
+        return generate_default_matrix(width, target_rows)
 
     img = Image.open(image_path).convert("L")
-    aspect_ratio = img.height / img.width
-    # Font character aspect ratio correction (~0.55 in monospace fonts)
-    height = int(width * aspect_ratio * 0.55)
-    img_resized = img.resize((width, height), Image.Resampling.LANCZOS)
+    img_resized = img.resize((width, target_rows), Image.Resampling.LANCZOS)
 
     ascii_rows = []
-    pixels = img_resized.getdata()
+    pixels = list(img_resized.get_flattened_data()) if hasattr(img_resized, "get_flattened_data") else list(img_resized.getdata())
     
-    for y in range(height):
+    for y in range(target_rows):
         row = []
         for x in range(width):
             brightness = pixels[y * width + x]
-            # Map 0..255 to character index in RAMP
             char_idx = int((brightness / 255) * (len(RAMP) - 1))
             row.append(RAMP[char_idx])
         ascii_rows.append("".join(row))
@@ -36,7 +32,6 @@ def generate_default_matrix(width: int, height: int):
     for y in range(height):
         row = []
         for x in range(width):
-            # Create a stylized geometric avatar pattern
             dist = ((x - width/2)**2 + (y - height/2)**2)**0.5
             val = int((dist / (width/2)) * (len(RAMP) - 1))
             val = max(0, min(len(RAMP) - 1, val))
@@ -44,29 +39,27 @@ def generate_default_matrix(width: int, height: int):
         rows.append("".join(row))
     return rows
 
-def generate_ascii_svg(image_path: str, output_path: str, char_width: int = 75):
-    ascii_rows = image_to_ascii(image_path, char_width)
-    row_count = len(ascii_rows)
+def generate_ascii_svg(image_path: str, output_path: str, char_width: int = 65):
+    target_rows = 43
+    ascii_rows = image_to_ascii(image_path, char_width, target_rows)
 
-    font_size = 7
+    font_size = 7.5
     line_height = 8.5
-    char_spacing = 4.2
-
-    svg_width = int(char_width * char_spacing) + 40
-    svg_height = int(row_count * line_height) + 50
+    
+    svg_width = 375
+    svg_height = 415
 
     # SMIL typing animation parameters
-    row_duration = 0.05  # seconds per row
+    row_duration = 0.04  # seconds per row
     
     clip_paths = []
     text_elements = []
 
     for idx, row_text in enumerate(ascii_rows):
         clip_id = f"row-clip-{idx}"
-        y_pos = 35 + (idx * line_height)
-        start_delay = round(0.1 + (idx * row_duration), 3)
+        y_pos = 38 + (idx * line_height)
+        start_delay = round(0.08 + (idx * row_duration), 3)
 
-        # Escape HTML entities for SVG compatibility
         safe_text = (
             row_text.replace("&", "&amp;")
                     .replace("<", "&lt;")
@@ -75,22 +68,20 @@ def generate_ascii_svg(image_path: str, output_path: str, char_width: int = 75):
                     .replace(" ", "&#160;")
         )
 
-        # ClipPath wiping left to right
         clip_paths.append(f'''
     <clipPath id="{clip_id}">
       <rect x="0" y="{y_pos - 7}" width="0" height="{line_height + 2}">
-        <animate attributeName="width" from="0" to="{svg_width}" begin="{start_delay}s" dur="0.25s" fill="freeze" />
+        <animate attributeName="width" from="0" to="{svg_width}" begin="{start_delay}s" dur="0.2s" fill="freeze" />
       </rect>
     </clipPath>''')
 
-        # Row Text Element
         text_elements.append(f'''
-    <text x="20" y="{y_pos}" clip-path="url(#{clip_id})" class="ascii-text">{safe_text}</text>''')
+    <text x="18" y="{y_pos}" clip-path="url(#{clip_id})" class="ascii-text">{safe_text}</text>''')
 
     svg_content = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {svg_width} {svg_height}" width="{svg_width}" height="{svg_height}">
   <style>
-    .bg {{ fill: #0d1117; stroke: #30363d; stroke-width: 1px; rx: 10px; }}
-    .title-bar {{ fill: #161b22; rx: 10px; }}
+    .bg {{ fill: #0d1117; stroke: #30363d; stroke-width: 1px; }}
+    .title-bar {{ fill: #161b22; }}
     .dot-red {{ fill: #ff5f56; }}
     .dot-yellow {{ fill: #ffbd2e; }}
     .dot-green {{ fill: #27c93f; }}
@@ -105,7 +96,7 @@ def generate_ascii_svg(image_path: str, output_path: str, char_width: int = 75):
   </style>
 
   <!-- Container Box -->
-  <rect width="100%" height="100%" class="bg" />
+  <rect width="100%" height="100%" rx="10" ry="10" class="bg" />
 
   <!-- Terminal Title Bar -->
   <path d="M 0,10 A 10,10 0 0,1 10,0 L {svg_width-10},0 A 10,10 0 0,1 {svg_width},10 L {svg_width},26 L 0,26 Z" class="title-bar" />
@@ -135,7 +126,7 @@ def main():
     parser = argparse.ArgumentParser(description="Convert photo to self-typing ASCII SVG.")
     parser.add_argument("--image", type=str, default="data/source-prepped.png", help="Prepped image path")
     parser.add_argument("--output", type=str, default="avi-ascii.svg", help="Output SVG path")
-    parser.add_argument("--width", type=int, default=85, help="Character width matrix")
+    parser.add_argument("--width", type=int, default=65, help="Character width matrix")
     args = parser.parse_args()
 
     generate_ascii_svg(args.image, args.output, args.width)

@@ -5,7 +5,7 @@ import numpy as np
 
 def prep_image(input_path: str, output_path: str):
     try:
-        from PIL import Image
+        from PIL import Image, ImageEnhance, ImageOps
     except ImportError:
         print("[!] Pillow is required for prep_photo.py.")
         sys.exit(1)
@@ -17,43 +17,28 @@ def prep_image(input_path: str, output_path: str):
     # 1. Load Image
     img = Image.open(input_path).convert("RGBA")
 
-    # 2. Background removal using rembg if available, or luminance/center mask fallback
-    img_no_bg = None
-    try:
-        import rembg
-        print("[*] Removing photo background with rembg...")
-        img_no_bg = rembg.remove(img)
-    except Exception as e:
-        print(f"[*] rembg fallback ({e}). Applying subject isolation mask...")
-        
-    if img_no_bg is None:
-        # Fallback: Mask out outer background regions and boost center subject contrast
-        w, h = img.size
-        # Crop to center 75% focused on subject (the guy)
-        left = int(w * 0.12)
-        top = int(h * 0.05)
-        right = int(w * 0.88)
-        bottom = int(h * 0.90)
-        img_cropped = img.crop((left, top, right, bottom))
-        
-        # Composite cropped image on white background
-        white_bg = Image.new("RGBA", img_cropped.size, (255, 255, 255, 255))
-        composite = Image.alpha_composite(white_bg, img_cropped).convert("L")
-    else:
-        # Crop tight around subject bounding box
-        bbox = img_no_bg.getbbox()
-        if bbox:
-            img_no_bg = img_no_bg.crop(bbox)
-        white_bg = Image.new("RGBA", img_no_bg.size, (255, 255, 255, 255))
-        composite = Image.alpha_composite(white_bg, img_no_bg).convert("L")
+    # 2. Crop to central subject region (face & upper body of Harsh)
+    w, h = img.size
+    left = int(w * 0.15)
+    top = int(h * 0.05)
+    right = int(w * 0.85)
+    bottom = int(h * 0.85)
+    img_cropped = img.crop((left, top, right, bottom))
 
-    # 3. Enhance contrast on the guy
-    from PIL import ImageEnhance
+    # 3. Composite on clean background and convert to grayscale
+    white_bg = Image.new("RGBA", img_cropped.size, (255, 255, 255, 255))
+    composite = Image.alpha_composite(white_bg, img_cropped).convert("L")
+
+    # 4. Apply high-contrast subject tuning (enhances face features, sunglasses, jacket)
     enhancer = ImageEnhance.Contrast(composite)
-    enhanced_img = enhancer.enhance(1.8)
+    enhanced = enhancer.enhance(1.9)
+
+    # 5. Brightness adjustment for clear ASCII mapping
+    bright_enhancer = ImageEnhance.Brightness(enhanced)
+    final_img = bright_enhancer.enhance(1.1)
 
     os.makedirs(os.path.dirname(output_path) if os.path.dirname(output_path) else ".", exist_ok=True)
-    enhanced_img.save(output_path)
+    final_img.save(output_path)
     print(f"[+] Saved prepped photo to {output_path}")
     return
 
