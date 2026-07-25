@@ -5,21 +5,24 @@
     .dot-red { fill: #ff5f56; }
     .dot-yellow { fill: #ffbd2e; }
     .dot-green { fill: #27c93f; }
-    .title-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; fill: #8b949e; font-weight: bold; }
+    .title-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; fill: #8b949e; font-weight: bold; }
     
-    .key-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; fill: #58a6ff; font-weight: bold; }
-    .val-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; font-weight: 500; }
+    .user-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 15px; fill: #58a6ff; font-weight: bold; }
+    .key-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; fill: #ffa657; font-weight: bold; }
+    .val-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; font-weight: 500; }
+    .sep-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; fill: #8b949e; font-weight: bold; }
+    .hl-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; font-weight: 500; }
 
     .card-line {
       opacity: 0;
-      transform: translateY(8px);
-      animation: fadeInSlide 0.4s ease-out forwards;
+      transform: translateY(6px);
+      animation: fadeInSlide 0.35s ease-out forwards;
     }
 
     @keyframes fadeInSlide {
       0% {
         opacity: 0;
-        transform: translateY(8px);
+        transform: translateY(6px);
       }
       100% {
         opacity: 1;
@@ -32,61 +35,55 @@
   <rect width="100%" height="100%" class="bg" />
 
   <!-- Terminal Title Bar -->
-  <path d="M 0,10 A 10,10 0 0,1 10,0 L 480,0 A 10,10 0 0,1 490,10 L 490,36 L 0,36 Z" class="title-bar" />
-  <circle cx="20" cy="18" r="5.5" class="dot-red" />
-  <circle cx="36" cy="18" r="5.5" class="dot-yellow" />
-  <circle cx="52" cy="18" r="5.5" class="dot-green" />
-  <text x="245.0" y="22" text-anchor="middle" class="title-text">harshvangar2702-debug@github: ~ (neofetch)</text>
+  <path d="M 0,10 A 10,10 0 0,1 10,0 L 480,0 A 10,10 0 0,1 490,10 L 490,32 L 0,32 Z" class="title-bar" />
+  <circle cx="18" cy="16" r="4.5" class="dot-red" />
+  <circle cx="32" cy="16" r="4.5" class="dot-yellow" />
+  <circle cx="46" cy="16" r="4.5" class="dot-green" />
+  <text x="245.0" y="20" text-anchor="middle" class="title-text">harshvangar2702-debug@github: ~$ neofetch</text>
 
-  <!-- Info Key-Value Rows -->
+  <!-- Lines -->
   
-    <g class="card-line" style="animation-delay: 0.1s;">
-      <text x="30" y="75" class="key-text">OS:</text>
-      <text x="130" y="75" class="val-text" fill="#79c0ff">Arch Linux x86_64 / macOS</text>
+    <g class="card-line" style="animation-delay: 0.08s;">
+      <text x="25" y="62" class="user-text">harshvangar2702-debug</text>
     </g>
-    <g class="card-line" style="animation-delay: 0.18s;">
-      <text x="30" y="101" class="key-text">Host:</text>
-      <text x="130" y="101" class="val-text" fill="#79c0ff">GitHub Profile Terminal v2.4</text>
+    <g class="card-line" style="animation-delay: 0.14s;">
+      <text x="25" y="86" class="key-text">Now</text>
+      <text x="115" y="86" class="val-text" fill="#79c0ff">Frontend & UI Specialist</text>
+    </g>
+    <g class="card-line" style="animation-delay: 0.2s;">
+      <text x="25" y="110" class="key-text">Prev</text>
+      <text x="115" y="110" class="val-text" fill="#79c0ff">Web Application Engineer</text>
     </g>
     <g class="card-line" style="animation-delay: 0.26s;">
-      <text x="30" y="127" class="key-text">Uptime:</text>
-      <text x="130" y="127" class="val-text" fill="#79c0ff">99.98% (Continuous Integration)</text>
+      <text x="25" y="134" class="key-text">Edu</text>
+      <text x="115" y="134" class="val-text" fill="#79c0ff">B.Tech in Computer Science</text>
     </g>
-    <g class="card-line" style="animation-delay: 0.34s;">
-      <text x="30" y="153" class="key-text">Shell:</text>
-      <text x="130" y="153" class="val-text" fill="#79c0ff">zsh 5.9 (x86_64-apple-darwin22.0)</text>
+    <g class="card-line" style="animation-delay: 0.32s;">
+      <text x="25" y="158" class="sep-text">-- Stack</text>
     </g>
-    <g class="card-line" style="animation-delay: 0.42s;">
-      <text x="30" y="179" class="key-text">Role:</text>
-      <text x="130" y="179" class="val-text" fill="#ffa657">Senior Full-Stack Engineer & Architect</text>
+    <g class="card-line" style="animation-delay: 0.38s;">
+      <text x="25" y="178" class="key-text">Frontend</text>
+      <text x="115" y="178" class="val-text" fill="#ffa657">React, Next.js, TypeScript, Tailwind, CSS3</text>
+    </g>
+    <g class="card-line" style="animation-delay: 0.44s;">
+      <text x="25" y="202" class="key-text">Backend</text>
+      <text x="115" y="202" class="val-text" fill="#a5d6ff">Node.js, Express, Python, REST APIs</text>
     </g>
     <g class="card-line" style="animation-delay: 0.5s;">
-      <text x="30" y="205" class="key-text">Now:</text>
-      <text x="130" y="205" class="val-text" fill="#a5d6ff">Building animated SVG profile tools</text>
+      <text x="25" y="226" class="key-text">AI / ML</text>
+      <text x="115" y="226" class="val-text" fill="#d2a8ff">LangChain, OpenAI API, Vercel AI SDK</text>
     </g>
-    <g class="card-line" style="animation-delay: 0.58s;">
-      <text x="30" y="231" class="key-text">Prev:</text>
-      <text x="130" y="231" class="val-text" fill="#a5d6ff">Distributed Systems Lead @ TechCorp</text>
+    <g class="card-line" style="animation-delay: 0.56s;">
+      <text x="25" y="250" class="key-text">Cloud</text>
+      <text x="115" y="250" class="val-text" fill="#ff7b72">Vercel, Docker, Git, GitHub Actions</text>
     </g>
-    <g class="card-line" style="animation-delay: 0.66s;">
-      <text x="30" y="257" class="key-text">Stack:</text>
-      <text x="130" y="257" class="val-text" fill="#d2a8ff">Python, TypeScript, React, Go, Docker, K8s</text>
+    <g class="card-line" style="animation-delay: 0.62s;">
+      <text x="25" y="274" class="sep-text">-- Highlights</text>
+    </g>
+    <g class="card-line" style="animation-delay: 0.68s;">
+      <text x="25" y="294" class="hl-text" fill="#56d364">• Crafting pixel-perfect, responsive UI design systems</text>
     </g>
     <g class="card-line" style="animation-delay: 0.74s;">
-      <text x="30" y="283" class="key-text">Focus:</text>
-      <text x="130" y="283" class="val-text" fill="#ff7b72">Web Performance, CLI Tools, Open Source</text>
+      <text x="25" y="316" class="hl-text" fill="#56d364">• Building interactive animated web components & SVGs</text>
     </g>
-    <g class="card-line" style="animation-delay: 0.82s;">
-      <text x="30" y="309" class="key-text">Highlights:</text>
-      <text x="130" y="309" class="val-text" fill="#56d364">9.3k+ Yearly Commits, 50+ PRs Merged</text>
-    </g>
-
-  <!-- Bottom Color Blocks -->
-  
-    <rect x="30" y="347" width="22" height="12" rx="3" fill="#ff7b72" class="card-line" style="animation-delay: 0.9s;" />
-    <rect x="58" y="347" width="22" height="12" rx="3" fill="#ffa657" class="card-line" style="animation-delay: 0.98s;" />
-    <rect x="86" y="347" width="22" height="12" rx="3" fill="#d2a8ff" class="card-line" style="animation-delay: 1.06s;" />
-    <rect x="114" y="347" width="22" height="12" rx="3" fill="#79c0ff" class="card-line" style="animation-delay: 1.14s;" />
-    <rect x="142" y="347" width="22" height="12" rx="3" fill="#56d364" class="card-line" style="animation-delay: 1.22s;" />
-    <rect x="170" y="347" width="22" height="12" rx="3" fill="#e3b341" class="card-line" style="animation-delay: 1.3s;" />
 </svg>

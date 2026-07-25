@@ -5,45 +5,57 @@ def generate_info_card(output_path: str):
     width = 490
     height = 370
 
-    # Information specs
-    specs = [
-        ("OS", "Arch Linux x86_64 / macOS", "#79c0ff"),
-        ("Host", "GitHub Profile Terminal v2.4", "#79c0ff"),
-        ("Uptime", "99.98% (Continuous Integration)", "#79c0ff"),
-        ("Shell", "zsh 5.9 (x86_64-apple-darwin22.0)", "#79c0ff"),
-        ("Role", "Senior Full-Stack Engineer & Architect", "#ffa657"),
-        ("Now", "Building animated SVG profile tools", "#a5d6ff"),
-        ("Prev", "Distributed Systems Lead @ TechCorp", "#a5d6ff"),
-        ("Stack", "Python, TypeScript, React, Go, Docker, K8s", "#d2a8ff"),
-        ("Focus", "Web Performance, CLI Tools, Open Source", "#ff7b72"),
-        ("Highlights", "9.3k+ Yearly Commits, 50+ PRs Merged", "#56d364"),
+    # Structured Neofetch content matching Avi Vashishta's layout
+    lines = [
+        ("user", "harshvangar2702-debug", "#58a6ff", True),
+        ("Now", "Frontend & UI Specialist", "#79c0ff", False),
+        ("Prev", "Web Application Engineer", "#79c0ff", False),
+        ("Edu", "B.Tech in Computer Science", "#79c0ff", False),
+        ("sep1", "-- Stack", "#8b949e", False),
+        ("Frontend", "React, Next.js, TypeScript, Tailwind, CSS3", "#ffa657", False),
+        ("Backend", "Node.js, Express, Python, REST APIs", "#a5d6ff", False),
+        ("AI / ML", "LangChain, OpenAI API, Vercel AI SDK", "#d2a8ff", False),
+        ("Cloud", "Vercel, Docker, Git, GitHub Actions", "#ff7b72", False),
+        ("sep2", "-- Highlights", "#8b949e", False),
+        ("hl1", "• Crafting pixel-perfect, responsive UI design systems", "#56d364", False),
+        ("hl2", "• Building interactive animated web components & SVGs", "#56d364", False),
     ]
 
     lines_svg = []
-    start_y = 75
-    line_height = 26
+    y_pos = 62
+    line_spacing = 24
 
-    for idx, (key, val, val_color) in enumerate(specs):
-        y_pos = start_y + (idx * line_height)
-        delay = round(0.1 + (idx * 0.08), 2)
-
-        lines_svg.append(f'''
+    for idx, (label, val, col, is_bold) in enumerate(lines):
+        delay = round(0.08 + (idx * 0.06), 2)
+        
+        if label.startswith("sep"):
+            # Section divider like "-- Stack" or "-- Highlights"
+            lines_svg.append(f'''
     <g class="card-line" style="animation-delay: {delay}s;">
-      <text x="30" y="{y_pos}" class="key-text">{key}:</text>
-      <text x="130" y="{y_pos}" class="val-text" fill="{val_color}">{val}</text>
+      <text x="25" y="{y_pos}" class="sep-text">{val}</text>
     </g>''')
-
-    # Color palette bar (Neofetch signature bottom dots/blocks)
-    colors = ["#ff7b72", "#ffa657", "#d2a8ff", "#79c0ff", "#56d364", "#e3b341"]
-    color_blocks_svg = []
-    block_x_start = 30
-    block_y = start_y + (len(specs) * line_height) + 12
-
-    for idx, col in enumerate(colors):
-        x = block_x_start + (idx * 28)
-        delay = round(0.1 + ((len(specs) + idx) * 0.08), 2)
-        color_blocks_svg.append(f'''
-    <rect x="{x}" y="{block_y}" width="22" height="12" rx="3" fill="{col}" class="card-line" style="animation-delay: {delay}s;" />''')
+            y_pos += 20
+        elif label.startswith("hl"):
+            # Bullet highlight line
+            lines_svg.append(f'''
+    <g class="card-line" style="animation-delay: {delay}s;">
+      <text x="25" y="{y_pos}" class="hl-text" fill="{col}">{val}</text>
+    </g>''')
+            y_pos += 22
+        elif label == "user":
+            lines_svg.append(f'''
+    <g class="card-line" style="animation-delay: {delay}s;">
+      <text x="25" y="{y_pos}" class="user-text">{val}</text>
+    </g>''')
+            y_pos += 24
+        else:
+            # Standard Key: Value row
+            lines_svg.append(f'''
+    <g class="card-line" style="animation-delay: {delay}s;">
+      <text x="25" y="{y_pos}" class="key-text">{label}</text>
+      <text x="115" y="{y_pos}" class="val-text" fill="{col}">{val}</text>
+    </g>''')
+            y_pos += line_spacing
 
     svg_content = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="{width}" height="{height}">
   <style>
@@ -52,21 +64,24 @@ def generate_info_card(output_path: str):
     .dot-red {{ fill: #ff5f56; }}
     .dot-yellow {{ fill: #ffbd2e; }}
     .dot-green {{ fill: #27c93f; }}
-    .title-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; fill: #8b949e; font-weight: bold; }}
+    .title-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; fill: #8b949e; font-weight: bold; }}
     
-    .key-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; fill: #58a6ff; font-weight: bold; }}
-    .val-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; font-weight: 500; }}
+    .user-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 15px; fill: #58a6ff; font-weight: bold; }}
+    .key-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; fill: #ffa657; font-weight: bold; }}
+    .val-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; font-weight: 500; }}
+    .sep-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; fill: #8b949e; font-weight: bold; }}
+    .hl-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; font-weight: 500; }}
 
     .card-line {{
       opacity: 0;
-      transform: translateY(8px);
-      animation: fadeInSlide 0.4s ease-out forwards;
+      transform: translateY(6px);
+      animation: fadeInSlide 0.35s ease-out forwards;
     }}
 
     @keyframes fadeInSlide {{
       0% {{
         opacity: 0;
-        transform: translateY(8px);
+        transform: translateY(6px);
       }}
       100% {{
         opacity: 1;
@@ -79,21 +94,19 @@ def generate_info_card(output_path: str):
   <rect width="100%" height="100%" class="bg" />
 
   <!-- Terminal Title Bar -->
-  <path d="M 0,10 A 10,10 0 0,1 10,0 L {width-10},0 A 10,10 0 0,1 {width},10 L {width},36 L 0,36 Z" class="title-bar" />
-  <circle cx="20" cy="18" r="5.5" class="dot-red" />
-  <circle cx="36" cy="18" r="5.5" class="dot-yellow" />
-  <circle cx="52" cy="18" r="5.5" class="dot-green" />
-  <text x="{width/2}" y="22" text-anchor="middle" class="title-text">harshvangar2702-debug@github: ~ (neofetch)</text>
+  <path d="M 0,10 A 10,10 0 0,1 10,0 L {width-10},0 A 10,10 0 0,1 {width},10 L {width},32 L 0,32 Z" class="title-bar" />
+  <circle cx="18" cy="16" r="4.5" class="dot-red" />
+  <circle cx="32" cy="16" r="4.5" class="dot-yellow" />
+  <circle cx="46" cy="16" r="4.5" class="dot-green" />
+  <text x="{width/2}" y="20" text-anchor="middle" class="title-text">harshvangar2702-debug@github: ~$ neofetch</text>
 
-  <!-- Info Key-Value Rows -->
+  <!-- Lines -->
   {''.join(lines_svg)}
-
-  <!-- Bottom Color Blocks -->
-  {''.join(color_blocks_svg)}
 </svg>
 '''
 
-    os.makedirs(os.path.dirname(output_path) if os.path.dirname(output_path) else ".", exist_ok=True)
+    if os.path.dirname(output_path):
+        os.makedirs(os.path.dirname(output_path), exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(svg_content)
 
