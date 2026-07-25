@@ -26,34 +26,27 @@ def generate_info_card(output_path: str):
     line_spacing = 24
 
     for idx, (label, val, col, is_bold) in enumerate(lines):
-        delay = round(0.08 + (idx * 0.05), 2)
-        smil_anim = f'<animate attributeName="opacity" from="0" to="1" begin="{delay}s" dur="0.35s" fill="freeze" />'
-        
         if label.startswith("sep"):
             lines_svg.append(f'''
-    <g opacity="0">
-      {smil_anim}
+    <g>
       <text x="22" y="{y_pos}" class="sep-text">{val}</text>
     </g>''')
             y_pos += 20
         elif label.startswith("hl"):
             lines_svg.append(f'''
-    <g opacity="0">
-      {smil_anim}
+    <g>
       <text x="22" y="{y_pos}" class="hl-text" fill="{col}">{val}</text>
     </g>''')
             y_pos += 22
         elif label == "user":
             lines_svg.append(f'''
-    <g opacity="0">
-      {smil_anim}
+    <g>
       <text x="22" y="{y_pos}" class="user-text">{val}</text>
     </g>''')
             y_pos += 24
         else:
             lines_svg.append(f'''
-    <g opacity="0">
-      {smil_anim}
+    <g>
       <text x="22" y="{y_pos}" class="key-text">{label}</text>
       <text x="110" y="{y_pos}" class="val-text" fill="{col}">{val}</text>
     </g>''')

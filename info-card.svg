@@ -26,59 +26,47 @@
 
   <!-- Lines -->
   
-    <g opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="0.08s" dur="0.35s" fill="freeze" />
+    <g>
       <text x="22" y="60" class="user-text">Harsh Vangar (harshvangar2702-debug)</text>
     </g>
-    <g opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="0.13s" dur="0.35s" fill="freeze" />
+    <g>
       <text x="22" y="84" class="key-text">Now</text>
       <text x="110" y="84" class="val-text" fill="#79c0ff">Full-Stack Developer @ Tech Surya IT Solutions</text>
     </g>
-    <g opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="0.18s" dur="0.35s" fill="freeze" />
+    <g>
       <text x="22" y="108" class="key-text">Focus</text>
       <text x="110" y="108" class="val-text" fill="#79c0ff">UI/UX Design & User-Centric Web Experiences</text>
     </g>
-    <g opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="0.23s" dur="0.35s" fill="freeze" />
+    <g>
       <text x="22" y="132" class="key-text">Edu</text>
       <text x="110" y="132" class="val-text" fill="#79c0ff">CS Diploma, MSBTE Maharashtra</text>
     </g>
-    <g opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="0.28s" dur="0.35s" fill="freeze" />
+    <g>
       <text x="22" y="156" class="sep-text">-- Stack & Skills</text>
     </g>
-    <g opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="0.33s" dur="0.35s" fill="freeze" />
+    <g>
       <text x="22" y="176" class="key-text">Frontend</text>
       <text x="110" y="176" class="val-text" fill="#ffa657">React.js, JavaScript, HTML5/CSS3, UI/UX Design</text>
     </g>
-    <g opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="0.38s" dur="0.35s" fill="freeze" />
+    <g>
       <text x="22" y="200" class="key-text">Backend</text>
       <text x="110" y="200" class="val-text" fill="#a5d6ff">Python, Node.js, RESTful APIs, SQL</text>
     </g>
-    <g opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="0.43s" dur="0.35s" fill="freeze" />
+    <g>
       <text x="22" y="224" class="key-text">Projects</text>
       <text x="110" y="224" class="val-text" fill="#d2a8ff">AirCanvas (Gesture AI), SIH Hackathon App</text>
     </g>
-    <g opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="0.48s" dur="0.35s" fill="freeze" />
+    <g>
       <text x="22" y="248" class="key-text">Tools</text>
       <text x="110" y="248" class="val-text" fill="#ff7b72">Figma, Git, GitHub Actions, VS Code</text>
     </g>
-    <g opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="0.53s" dur="0.35s" fill="freeze" />
+    <g>
       <text x="22" y="272" class="sep-text">-- Highlights & Achievements</text>
     </g>
-    <g opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="0.58s" dur="0.35s" fill="freeze" />
+    <g>
       <text x="22" y="292" class="hl-text" fill="#56d364">• Winner/Participant: Smart India Hackathon (SIH 2023)</text>
     </g>
-    <g opacity="0">
-      <animate attributeName="opacity" from="0" to="1" begin="0.63s" dur="0.35s" fill="freeze" />
+    <g>
       <text x="22" y="314" class="hl-text" fill="#56d364">• Built AirCanvas (Vision Pro inspired AI gesture drawing)</text>
     </g>
 </svg>

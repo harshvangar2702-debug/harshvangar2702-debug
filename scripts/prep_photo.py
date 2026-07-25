@@ -17,24 +17,40 @@ def prep_image(input_path: str, output_path: str):
     # 1. Load Image
     img = Image.open(input_path).convert("RGBA")
 
-    # 2. Composite on white background and convert to grayscale
-    if img.mode == 'RGBA':
-        white_bg = Image.new("RGBA", img.size, (255, 255, 255, 255))
-        composite = Image.alpha_composite(white_bg, img).convert("L")
-    else:
-        composite = img.convert("L")
-
-    # 3. Apply contrast enhancement
+    # 2. Background removal using rembg if available, or luminance/center mask fallback
+    img_no_bg = None
     try:
-        import cv2
-        img_np = np.array(composite)
-        clahe = cv2.createCLAHE(clipLimit=3.0, tileGridSize=(8, 8))
-        enhanced_np = clahe.apply(img_np)
-        enhanced_img = Image.fromarray(enhanced_np)
-    except Exception:
-        from PIL import ImageEnhance
-        enhancer = ImageEnhance.Contrast(composite)
-        enhanced_img = enhancer.enhance(2.0)
+        import rembg
+        print("[*] Removing photo background with rembg...")
+        img_no_bg = rembg.remove(img)
+    except Exception as e:
+        print(f"[*] rembg fallback ({e}). Applying subject isolation mask...")
+        
+    if img_no_bg is None:
+        # Fallback: Mask out outer background regions and boost center subject contrast
+        w, h = img.size
+        # Crop to center 75% focused on subject (the guy)
+        left = int(w * 0.12)
+        top = int(h * 0.05)
+        right = int(w * 0.88)
+        bottom = int(h * 0.90)
+        img_cropped = img.crop((left, top, right, bottom))
+        
+        # Composite cropped image on white background
+        white_bg = Image.new("RGBA", img_cropped.size, (255, 255, 255, 255))
+        composite = Image.alpha_composite(white_bg, img_cropped).convert("L")
+    else:
+        # Crop tight around subject bounding box
+        bbox = img_no_bg.getbbox()
+        if bbox:
+            img_no_bg = img_no_bg.crop(bbox)
+        white_bg = Image.new("RGBA", img_no_bg.size, (255, 255, 255, 255))
+        composite = Image.alpha_composite(white_bg, img_no_bg).convert("L")
+
+    # 3. Enhance contrast on the guy
+    from PIL import ImageEnhance
+    enhancer = ImageEnhance.Contrast(composite)
+    enhanced_img = enhancer.enhance(1.8)
 
     os.makedirs(os.path.dirname(output_path) if os.path.dirname(output_path) else ".", exist_ok=True)
     enhanced_img.save(output_path)
