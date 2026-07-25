@@ -138,7 +138,7 @@ def generate_mock_contributions():
 
 def main():
     parser = argparse.ArgumentParser(description="Fetch GitHub contributions calendar data.")
-    parser.add_argument("--username", type=str, default="AVIVASHISHTA29", help="GitHub username")
+    parser.add_argument("--username", type=str, default="harshvangar", help="GitHub username")
     parser.add_argument("--output", type=str, default="data/contributions.json", help="Output JSON path")
     args = parser.parse_args()
 
