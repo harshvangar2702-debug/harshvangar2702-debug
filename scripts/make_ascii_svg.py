@@ -6,7 +6,7 @@ from PIL import Image
 # Leading space ensures background remains transparent/blank
 RAMP = " .`:-=+*cs#%@"
 
-def image_to_ascii(image_path: str, width: int = 90):
+def image_to_ascii(image_path: str, width: int = 75):
     if not os.path.exists(image_path):
         print(f"[*] Prepped image '{image_path}' missing. Generating default ASCII matrix...")
         return generate_default_matrix(width, 48)
@@ -44,7 +44,7 @@ def generate_default_matrix(width: int, height: int):
         rows.append("".join(row))
     return rows
 
-def generate_ascii_svg(image_path: str, output_path: str, char_width: int = 90):
+def generate_ascii_svg(image_path: str, output_path: str, char_width: int = 75):
     ascii_rows = image_to_ascii(image_path, char_width)
     row_count = len(ascii_rows)
 

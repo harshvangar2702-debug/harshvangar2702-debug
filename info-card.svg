@@ -1,13 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 490 370" width="490" height="370">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 415" width="460" height="415">
   <style>
-    .bg { fill: #0d1117; stroke: #30363d; stroke-width: 1px; rx: 10px; }
-    .title-bar { fill: #161b22; rx: 10px; }
+    .bg { fill: #0d1117; stroke: #30363d; stroke-width: 1px; }
+    .title-bar { fill: #161b22; }
     .dot-red { fill: #ff5f56; }
     .dot-yellow { fill: #ffbd2e; }
     .dot-green { fill: #27c93f; }
     .title-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; fill: #8b949e; font-weight: bold; }
     
-    .user-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 14px; fill: #58a6ff; font-weight: bold; }
+    .user-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13.5px; fill: #58a6ff; font-weight: bold; }
     .key-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; fill: #ffa657; font-weight: bold; }
     .val-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; font-weight: 500; }
     .sep-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; fill: #8b949e; font-weight: bold; }
@@ -15,58 +15,58 @@
   </style>
 
   <!-- Container Box -->
-  <rect width="100%" height="100%" class="bg" />
+  <rect width="100%" height="100%" rx="10" ry="10" class="bg" />
 
   <!-- Terminal Title Bar -->
-  <path d="M 0,10 A 10,10 0 0,1 10,0 L 480,0 A 10,10 0 0,1 490,10 L 490,32 L 0,32 Z" class="title-bar" />
+  <path d="M 0,10 A 10,10 0 0,1 10,0 L 450,0 A 10,10 0 0,1 460,10 L 460,32 L 0,32 Z" class="title-bar" />
   <circle cx="18" cy="16" r="4.5" class="dot-red" />
   <circle cx="32" cy="16" r="4.5" class="dot-yellow" />
   <circle cx="46" cy="16" r="4.5" class="dot-green" />
-  <text x="245.0" y="20" text-anchor="middle" class="title-text">harshvangar2702-debug@github: ~$ neofetch</text>
+  <text x="230.0" y="20" text-anchor="middle" class="title-text">harshvangar2702-debug@github: ~$ neofetch</text>
 
   <!-- Lines -->
   
     <g>
-      <text x="22" y="60" class="user-text">Harsh Vangar (harshvangar2702-debug)</text>
+      <text x="22" y="65" class="user-text">Harsh Vangar (harshvangar2702-debug)</text>
     </g>
     <g>
-      <text x="22" y="84" class="key-text">Now</text>
-      <text x="110" y="84" class="val-text" fill="#79c0ff">Full-Stack Developer @ Tech Surya IT Solutions</text>
+      <text x="22" y="93" class="key-text">Now</text>
+      <text x="105" y="93" class="val-text" fill="#79c0ff">Full-Stack Developer @ Tech Surya IT Solutions</text>
     </g>
     <g>
-      <text x="22" y="108" class="key-text">Focus</text>
-      <text x="110" y="108" class="val-text" fill="#79c0ff">UI/UX Design & User-Centric Web Experiences</text>
+      <text x="22" y="119" class="key-text">Focus</text>
+      <text x="105" y="119" class="val-text" fill="#79c0ff">UI/UX Design & User-Centric Web Experiences</text>
     </g>
     <g>
-      <text x="22" y="132" class="key-text">Edu</text>
-      <text x="110" y="132" class="val-text" fill="#79c0ff">CS Diploma, MSBTE Maharashtra</text>
+      <text x="22" y="145" class="key-text">Edu</text>
+      <text x="105" y="145" class="val-text" fill="#79c0ff">CS Diploma, MSBTE Maharashtra</text>
     </g>
     <g>
-      <text x="22" y="156" class="sep-text">-- Stack & Skills</text>
+      <text x="22" y="171" class="sep-text">-- Stack & Skills</text>
     </g>
     <g>
-      <text x="22" y="176" class="key-text">Frontend</text>
-      <text x="110" y="176" class="val-text" fill="#ffa657">React.js, JavaScript, HTML5/CSS3, UI/UX Design</text>
+      <text x="22" y="193" class="key-text">Frontend</text>
+      <text x="105" y="193" class="val-text" fill="#ffa657">React.js, JavaScript, HTML5/CSS3, UI/UX</text>
     </g>
     <g>
-      <text x="22" y="200" class="key-text">Backend</text>
-      <text x="110" y="200" class="val-text" fill="#a5d6ff">Python, Node.js, RESTful APIs, SQL</text>
+      <text x="22" y="219" class="key-text">Backend</text>
+      <text x="105" y="219" class="val-text" fill="#a5d6ff">Python, Node.js, RESTful APIs, SQL</text>
     </g>
     <g>
-      <text x="22" y="224" class="key-text">Projects</text>
-      <text x="110" y="224" class="val-text" fill="#d2a8ff">AirCanvas (Gesture AI), SIH Hackathon App</text>
+      <text x="22" y="245" class="key-text">Projects</text>
+      <text x="105" y="245" class="val-text" fill="#d2a8ff">AirCanvas (Gesture AI), SIH Hackathon App</text>
     </g>
     <g>
-      <text x="22" y="248" class="key-text">Tools</text>
-      <text x="110" y="248" class="val-text" fill="#ff7b72">Figma, Git, GitHub Actions, VS Code</text>
+      <text x="22" y="271" class="key-text">Tools</text>
+      <text x="105" y="271" class="val-text" fill="#ff7b72">Figma, Git, GitHub Actions, VS Code</text>
     </g>
     <g>
-      <text x="22" y="272" class="sep-text">-- Highlights & Achievements</text>
+      <text x="22" y="297" class="sep-text">-- Highlights & Achievements</text>
     </g>
     <g>
-      <text x="22" y="292" class="hl-text" fill="#56d364">• Winner/Participant: Smart India Hackathon (SIH 2023)</text>
+      <text x="22" y="319" class="hl-text" fill="#56d364">• Winner/Participant: SIH 2023 Hackathon</text>
     </g>
     <g>
-      <text x="22" y="314" class="hl-text" fill="#56d364">• Built AirCanvas (Vision Pro inspired AI gesture drawing)</text>
+      <text x="22" y="343" class="hl-text" fill="#56d364">• Built AirCanvas (AI Gesture Drawing)</text>
     </g>
 </svg>
