@@ -4,12 +4,12 @@ import argparse
 from datetime import datetime
 
 PALETTE = [
-    "#ebedf0",  # Level 0 (None)
-    "#9be9a8",  # Level 1
-    "#40c463",  # Level 2
-    "#30a14e",  # Level 3
-    "#216e39",  # Level 4
-    "#154c25"   # Level 5
+    "#061e14",  # Level 0 (Very dark emerald/black for zero contributions)
+    "#0f4c2c",  # Level 1 (Dark forest green)
+    "#1b7a48",  # Level 2 (Medium green)
+    "#28a745",  # Level 3 (Vibrant green)
+    "#34d058",  # Level 4 (Bright green)
+    "#46ea76"   # Level 5 (Lime top end)
 ]
 
 MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
@@ -99,11 +99,10 @@ def render_svg(data_path: str, output_path: str):
 
     svg_content = f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {width} {height}" width="{width}" height="{height}">
   <style>
-    .bg {{ fill: #ffffff; stroke: #d0d7de; stroke-width: 1px; rx: 8px; }}
     .title {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 13px; fill: #0969da; font-weight: bold; }}
-    .label {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #57606a; }}
-    .stats {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; fill: #24292f; }}
-    .accent {{ fill: #1a7f37; font-weight: bold; }}
+    .label {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; font-size: 10px; fill: #57606a; font-weight: 500; }}
+    .stats {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; fill: #57606a; }}
+    .accent {{ fill: #28a745; font-weight: bold; }}
 
     .day-box {{
       opacity: 0;
@@ -119,9 +118,6 @@ def render_svg(data_path: str, output_path: str):
       }}
     }}
   </style>
-
-  <!-- Background container -->
-  <rect width="100%" height="100%" class="bg" />
 
   <!-- Month Header Labels -->
   {''.join(month_labels_svg)}
