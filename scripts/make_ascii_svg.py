@@ -52,7 +52,7 @@ def generate_ascii_svg(image_path: str, output_path: str, char_width: int = 65):
 
     # Center the ASCII art horizontally inside the 460px box
     # 65 chars * 4.5px per char = ~292px. 460 - 292 = 168. Offset by ~84px.
-    text_offset_x = 60
+    text_offset_x = 84
 
     # SMIL typing animation parameters
     row_duration = 0.04  # seconds per row
