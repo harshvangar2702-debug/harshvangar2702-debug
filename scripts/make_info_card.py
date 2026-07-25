@@ -5,55 +5,52 @@ def generate_info_card(output_path: str):
     width = 490
     height = 370
 
-    # Structured Neofetch content matching Avi Vashishta's layout
+    # Real profile details extracted from Harsh Vangar's LinkedIn profile
     lines = [
-        ("user", "harshvangar2702-debug", "#58a6ff", True),
-        ("Now", "Frontend & UI Specialist", "#79c0ff", False),
-        ("Prev", "Web Application Engineer", "#79c0ff", False),
-        ("Edu", "B.Tech in Computer Science", "#79c0ff", False),
-        ("sep1", "-- Stack", "#8b949e", False),
-        ("Frontend", "React, Next.js, TypeScript, Tailwind, CSS3", "#ffa657", False),
-        ("Backend", "Node.js, Express, Python, REST APIs", "#a5d6ff", False),
-        ("AI / ML", "LangChain, OpenAI API, Vercel AI SDK", "#d2a8ff", False),
-        ("Cloud", "Vercel, Docker, Git, GitHub Actions", "#ff7b72", False),
-        ("sep2", "-- Highlights", "#8b949e", False),
-        ("hl1", "• Crafting pixel-perfect, responsive UI design systems", "#56d364", False),
-        ("hl2", "• Building interactive animated web components & SVGs", "#56d364", False),
+        ("user", "Harsh Vangar (harshvangar2702-debug)", "#58a6ff", True),
+        ("Now", "Full-Stack Developer @ Tech Surya IT Solutions", "#79c0ff", False),
+        ("Focus", "UI/UX Design & User-Centric Web Experiences", "#79c0ff", False),
+        ("Edu", "CS Diploma, MSBTE Maharashtra", "#79c0ff", False),
+        ("sep1", "-- Stack & Skills", "#8b949e", False),
+        ("Frontend", "React.js, JavaScript, HTML5/CSS3, UI/UX Design", "#ffa657", False),
+        ("Backend", "Python, Node.js, RESTful APIs, SQL", "#a5d6ff", False),
+        ("Projects", "AirCanvas (Gesture AI), SIH Hackathon App", "#d2a8ff", False),
+        ("Tools", "Figma, Git, GitHub Actions, VS Code", "#ff7b72", False),
+        ("sep2", "-- Highlights & Achievements", "#8b949e", False),
+        ("hl1", "• Winner/Participant: Smart India Hackathon (SIH 2023)", "#56d364", False),
+        ("hl2", "• Built AirCanvas (Vision Pro inspired AI gesture drawing)", "#56d364", False),
     ]
 
     lines_svg = []
-    y_pos = 62
+    y_pos = 60
     line_spacing = 24
 
     for idx, (label, val, col, is_bold) in enumerate(lines):
-        delay = round(0.08 + (idx * 0.06), 2)
+        delay = round(0.08 + (idx * 0.05), 2)
         
         if label.startswith("sep"):
-            # Section divider like "-- Stack" or "-- Highlights"
             lines_svg.append(f'''
     <g class="card-line" style="animation-delay: {delay}s;">
-      <text x="25" y="{y_pos}" class="sep-text">{val}</text>
+      <text x="22" y="{y_pos}" class="sep-text">{val}</text>
     </g>''')
             y_pos += 20
         elif label.startswith("hl"):
-            # Bullet highlight line
             lines_svg.append(f'''
     <g class="card-line" style="animation-delay: {delay}s;">
-      <text x="25" y="{y_pos}" class="hl-text" fill="{col}">{val}</text>
+      <text x="22" y="{y_pos}" class="hl-text" fill="{col}">{val}</text>
     </g>''')
             y_pos += 22
         elif label == "user":
             lines_svg.append(f'''
     <g class="card-line" style="animation-delay: {delay}s;">
-      <text x="25" y="{y_pos}" class="user-text">{val}</text>
+      <text x="22" y="{y_pos}" class="user-text">{val}</text>
     </g>''')
             y_pos += 24
         else:
-            # Standard Key: Value row
             lines_svg.append(f'''
     <g class="card-line" style="animation-delay: {delay}s;">
-      <text x="25" y="{y_pos}" class="key-text">{label}</text>
-      <text x="115" y="{y_pos}" class="val-text" fill="{col}">{val}</text>
+      <text x="22" y="{y_pos}" class="key-text">{label}</text>
+      <text x="110" y="{y_pos}" class="val-text" fill="{col}">{val}</text>
     </g>''')
             y_pos += line_spacing
 
@@ -66,11 +63,11 @@ def generate_info_card(output_path: str):
     .dot-green {{ fill: #27c93f; }}
     .title-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; fill: #8b949e; font-weight: bold; }}
     
-    .user-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 15px; fill: #58a6ff; font-weight: bold; }}
+    .user-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 14px; fill: #58a6ff; font-weight: bold; }}
     .key-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; fill: #ffa657; font-weight: bold; }}
-    .val-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; font-weight: 500; }}
-    .sep-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; fill: #8b949e; font-weight: bold; }}
-    .hl-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; font-weight: 500; }}
+    .val-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; font-weight: 500; }}
+    .sep-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; fill: #8b949e; font-weight: bold; }}
+    .hl-text {{ font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; font-weight: 500; }}
 
     .card-line {{
       opacity: 0;

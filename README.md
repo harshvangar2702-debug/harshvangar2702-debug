@@ -25,19 +25,20 @@
 
 ### <code>harshvangar2702-debug@github ~ $ ./links.sh</code>
 
-<p><strong>Frontend & UI Specialist • Web Engineer • Open Source Contributor</strong></p>
+<p><strong>Full-Stack Developer • UI/UX Designer • Python & React Specialist</strong></p>
+<p><em>Building User-Centric Web Experiences | Jalna, Maharashtra, India</em></p>
 
 <p>
   <a href="https://linkedin.com/in/harshvangar" target="_blank">
     <img src="https://img.shields.io/badge/LINKEDIN-harshvangar-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn" />
   </a>
   &nbsp;
-  <a href="https://github.com/harshvangar2702-debug" target="_blank">
-    <img src="https://img.shields.io/badge/GITHUB-harshvangar2702--debug-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
+  <a href="mailto:harshvangar2702@gmail.com" target="_blank">
+    <img src="https://img.shields.io/badge/EMAIL-harshvangar2702%40gmail.com-EA4335?style=for-the-badge&logo=gmail&logoColor=white" alt="Email" />
   </a>
   &nbsp;
-  <a href="https://instagram.com/harshvangar" target="_blank">
-    <img src="https://img.shields.io/badge/INSTAGRAM-harshvangar-E4405F?style=for-the-badge&logo=instagram&logoColor=white" alt="Instagram" />
+  <a href="https://github.com/harshvangar2702-debug" target="_blank">
+    <img src="https://img.shields.io/badge/GITHUB-harshvangar2702--debug-181717?style=for-the-badge&logo=github&logoColor=white" alt="GitHub" />
   </a>
 </p>
 

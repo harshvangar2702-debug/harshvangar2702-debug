@@ -7,11 +7,11 @@
     .dot-green { fill: #27c93f; }
     .title-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; fill: #8b949e; font-weight: bold; }
     
-    .user-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 15px; fill: #58a6ff; font-weight: bold; }
+    .user-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 14px; fill: #58a6ff; font-weight: bold; }
     .key-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; fill: #ffa657; font-weight: bold; }
-    .val-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; font-weight: 500; }
-    .sep-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 12px; fill: #8b949e; font-weight: bold; }
-    .hl-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; font-weight: 500; }
+    .val-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; font-weight: 500; }
+    .sep-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11.5px; fill: #8b949e; font-weight: bold; }
+    .hl-text { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; font-weight: 500; }
 
     .card-line {
       opacity: 0;
@@ -44,46 +44,46 @@
   <!-- Lines -->
   
     <g class="card-line" style="animation-delay: 0.08s;">
-      <text x="25" y="62" class="user-text">harshvangar2702-debug</text>
+      <text x="22" y="60" class="user-text">Harsh Vangar (harshvangar2702-debug)</text>
     </g>
-    <g class="card-line" style="animation-delay: 0.14s;">
-      <text x="25" y="86" class="key-text">Now</text>
-      <text x="115" y="86" class="val-text" fill="#79c0ff">Frontend & UI Specialist</text>
+    <g class="card-line" style="animation-delay: 0.13s;">
+      <text x="22" y="84" class="key-text">Now</text>
+      <text x="110" y="84" class="val-text" fill="#79c0ff">Full-Stack Developer @ Tech Surya IT Solutions</text>
     </g>
-    <g class="card-line" style="animation-delay: 0.2s;">
-      <text x="25" y="110" class="key-text">Prev</text>
-      <text x="115" y="110" class="val-text" fill="#79c0ff">Web Application Engineer</text>
+    <g class="card-line" style="animation-delay: 0.18s;">
+      <text x="22" y="108" class="key-text">Focus</text>
+      <text x="110" y="108" class="val-text" fill="#79c0ff">UI/UX Design & User-Centric Web Experiences</text>
     </g>
-    <g class="card-line" style="animation-delay: 0.26s;">
-      <text x="25" y="134" class="key-text">Edu</text>
-      <text x="115" y="134" class="val-text" fill="#79c0ff">B.Tech in Computer Science</text>
+    <g class="card-line" style="animation-delay: 0.23s;">
+      <text x="22" y="132" class="key-text">Edu</text>
+      <text x="110" y="132" class="val-text" fill="#79c0ff">CS Diploma, MSBTE Maharashtra</text>
     </g>
-    <g class="card-line" style="animation-delay: 0.32s;">
-      <text x="25" y="158" class="sep-text">-- Stack</text>
+    <g class="card-line" style="animation-delay: 0.28s;">
+      <text x="22" y="156" class="sep-text">-- Stack & Skills</text>
+    </g>
+    <g class="card-line" style="animation-delay: 0.33s;">
+      <text x="22" y="176" class="key-text">Frontend</text>
+      <text x="110" y="176" class="val-text" fill="#ffa657">React.js, JavaScript, HTML5/CSS3, UI/UX Design</text>
     </g>
     <g class="card-line" style="animation-delay: 0.38s;">
-      <text x="25" y="178" class="key-text">Frontend</text>
-      <text x="115" y="178" class="val-text" fill="#ffa657">React, Next.js, TypeScript, Tailwind, CSS3</text>
+      <text x="22" y="200" class="key-text">Backend</text>
+      <text x="110" y="200" class="val-text" fill="#a5d6ff">Python, Node.js, RESTful APIs, SQL</text>
     </g>
-    <g class="card-line" style="animation-delay: 0.44s;">
-      <text x="25" y="202" class="key-text">Backend</text>
-      <text x="115" y="202" class="val-text" fill="#a5d6ff">Node.js, Express, Python, REST APIs</text>
+    <g class="card-line" style="animation-delay: 0.43s;">
+      <text x="22" y="224" class="key-text">Projects</text>
+      <text x="110" y="224" class="val-text" fill="#d2a8ff">AirCanvas (Gesture AI), SIH Hackathon App</text>
     </g>
-    <g class="card-line" style="animation-delay: 0.5s;">
-      <text x="25" y="226" class="key-text">AI / ML</text>
-      <text x="115" y="226" class="val-text" fill="#d2a8ff">LangChain, OpenAI API, Vercel AI SDK</text>
+    <g class="card-line" style="animation-delay: 0.48s;">
+      <text x="22" y="248" class="key-text">Tools</text>
+      <text x="110" y="248" class="val-text" fill="#ff7b72">Figma, Git, GitHub Actions, VS Code</text>
     </g>
-    <g class="card-line" style="animation-delay: 0.56s;">
-      <text x="25" y="250" class="key-text">Cloud</text>
-      <text x="115" y="250" class="val-text" fill="#ff7b72">Vercel, Docker, Git, GitHub Actions</text>
+    <g class="card-line" style="animation-delay: 0.53s;">
+      <text x="22" y="272" class="sep-text">-- Highlights & Achievements</text>
     </g>
-    <g class="card-line" style="animation-delay: 0.62s;">
-      <text x="25" y="274" class="sep-text">-- Highlights</text>
+    <g class="card-line" style="animation-delay: 0.58s;">
+      <text x="22" y="292" class="hl-text" fill="#56d364">• Winner/Participant: Smart India Hackathon (SIH 2023)</text>
     </g>
-    <g class="card-line" style="animation-delay: 0.68s;">
-      <text x="25" y="294" class="hl-text" fill="#56d364">• Crafting pixel-perfect, responsive UI design systems</text>
-    </g>
-    <g class="card-line" style="animation-delay: 0.74s;">
-      <text x="25" y="316" class="hl-text" fill="#56d364">• Building interactive animated web components & SVGs</text>
+    <g class="card-line" style="animation-delay: 0.63s;">
+      <text x="22" y="314" class="hl-text" fill="#56d364">• Built AirCanvas (Vision Pro inspired AI gesture drawing)</text>
     </g>
 </svg>
